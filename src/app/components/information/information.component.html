@@ -1,0 +1,21 @@
+<form action="" class="Delete">
+  <div></div>
+  <div class="Icons">
+    <mat-icon
+      [ngClass]="{ 'iconMic': typeUser.use === 2, 'iconCircle': typeUser.use === 4 }"
+      class="Icon-footer"
+      (click)="NextVoice()"
+      fontIcon>{{ icon }}
+    </mat-icon>
+    <p [ngClass]="{ 'textPunter': typeUser.use === 4 }" class="text-info">{{ text }}</p>
+  </div>
+
+  <div class="DeleteButton" *ngIf="typeUser.use === 0; else alternative">
+    <button type="button" class="options" (click)="ButtonCancel()">{{ Cancel }}</button>
+    <button type="button" class="options" (click)="ButtonAccept()">{{ Accept }}</button>
+  </div>
+
+  <ng-template #alternative>
+    <div></div>
+  </ng-template>
+</form>

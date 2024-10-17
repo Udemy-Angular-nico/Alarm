@@ -1,0 +1,54 @@
+.form-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+
+  .inputs {
+    margin: auto;
+    padding-right: 2rem;
+  }
+  label {
+    color: white;
+  }
+  input {
+    display: block;
+    margin: 1rem 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: none;
+    box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+    border: 0 none;
+    background: #ebf5fc;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem 0;
+    grid-gap: 1rem;
+
+    button {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border: 2px white solid;
+      background-color: black;
+      font-size: 0.875rem;
+      color: white;
+      font-weight: bold;
+      /*background-color: #bcd8c1;*/
+      width: 100%;
+      display: block;
+      padding: 0.875rem 1rem;
+      border-radius: 1.5rem;
+      /*box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;*/
+      cursor: pointer;
+
+      &:hover {
+        background-color: gray;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.Icon-final {
+  display: flex;
+  justify-content: space-evenly;
+
+  button {
+    border: 0;
+    background-color: black;
+    cursor: pointer;
+    margin: 0;
+  }
+}
+
+.Icon-footer {
+  color: white;
+  width: 5rem;
+  height: 5rem;
+  font-size: 5rem;
+  &:hover {
+    color: #7B7878;
+  }
+}

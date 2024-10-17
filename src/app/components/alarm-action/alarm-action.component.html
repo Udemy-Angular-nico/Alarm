@@ -1,0 +1,40 @@
+<!--<p style="color: white;">alarm-action works!</p>-->
+<div class="myAlarm">
+  <div class="mat-elevation-z8 table-alarm">
+    <button class="returnButton" type="button" (click)="returnLeft()">
+      <mat-icon class="Icon-footer" fontIcon>arrow_back</mat-icon>
+    </button>
+    <table mat-table [dataSource]="dataAction">
+
+      <!-- Columna Alarma -->
+      <ng-container matColumnDef="Today">
+        <th mat-header-cell *matHeaderCellDef class="alarm-column"> {{ today }} </th>
+        <td mat-cell *matCellDef="let action; let i = index" class="alarm-column alarma-button">
+            <h5 class="action-letter">{{ action.letter }}</h5>
+        </td>
+      </ng-container>
+
+      <!-- Columna Alarma -->
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef class="alarm-column"> {{ date }} </th>
+        <td mat-cell *matCellDef="let action; let i = index" class="alarm-column alarma-button">
+            {{ action.Activity }}
+        </td>
+      </ng-container>
+
+      <!-- Columna Checkbox -->
+      <ng-container matColumnDef="select" class="select-columns">
+        <th mat-header-cell *matHeaderCellDef class="select-column">{{ select1 }}</th>
+        <td mat-cell *matCellDef="let Select" class="select-column checkcolor">
+          <mat-checkbox color="warn" [(ngModel)]="Select.selected" (click)="toggleSelection(Select)"/>
+        </td>
+      </ng-container>
+
+      <!-- Fila Encabezado -->
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <!-- Fila de Datos -->
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+  </div>
+  <app-controler-alarm [ButtonController]="{Option: false}"/>
+</div>

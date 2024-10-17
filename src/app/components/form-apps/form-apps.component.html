@@ -1,0 +1,15 @@
+<h3 style="color: white; text-align: center;">{{ session }}</h3>
+<form action="" class="button-apps">
+  <button type="button"><img ngSrc="Image/google.png" alt="" height="33" width="34">
+    <p>{{ google }}</p>
+  </button>
+  <button type="button" style="background-color: #0866FF;"><img ngSrc="Image/Facebook.png" alt="" height="33" width="26">
+    <p style="color: white">{{ face }}</p>
+  </button>
+  <button type="button"><img ngSrc="Image/apple.png" alt="" height="33" width="34">
+    <p>{{ apple }}</p>
+  </button>
+  <button type="button" (click)="alternate()" style="background-color: #7B7878;">
+    <p>{{ email }}</p>
+  </button>
+</form>

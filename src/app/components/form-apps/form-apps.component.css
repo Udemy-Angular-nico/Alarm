@@ -1,0 +1,18 @@
+.button-apps {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    padding: .2rem 1rem;
+    display: flex;
+    width: 13rem;
+    /*margin: auto;*/
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 1rem;
+    margin-top: .8rem;
+    border-radius: .8rem;
+    cursor: pointer;
+  }
+}

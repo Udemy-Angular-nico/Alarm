@@ -1,0 +1,43 @@
+<div class="myAlarm" [ngClass]="{'TimeClock': !editUser}">
+  <button type="button" (click)="returnLeft()">
+    <mat-icon class="Icon-footer" fontIcon>arrow_back</mat-icon>
+  </button>
+
+  <form action="" class="timeClock">
+    <h2 class="timeText">{{ name }}</h2>
+    <input
+      type="text"
+      id="hour"
+      [(ngModel)]="hours"
+      (change)="updateHours()"
+      name="hour"
+      #hour
+      placeholder="HH"
+      maxlength="2"
+      required>
+    <div class="timeDot">:</div>
+    <input
+      type="text"
+      id="minute"
+      [(ngModel)]="minutes"
+      (change)="updateMinutes()"
+      name="minute"
+      #minute
+      placeholder="MM"
+      maxlength="2"
+      required>
+
+    <p class="nametime">{{ Hour }}</p>
+    <p class="nametime"></p>
+    <p class="nametime">{{ Minute }}</p>
+
+    <button type="button" class="buttontime" (click)="returnLeft()">{{ cancel }}</button>
+    <p></p>
+    <button type="button" class="buttontime" (click)="returnRight()">{{ ok }}</button>
+
+  </form>
+  <app-controler-alarm *ngIf="editUser; else alternate" [ButtonController]="{ Option: false }"/>
+  <ng-template #alternate>
+    <div></div>
+  </ng-template>
+</div>

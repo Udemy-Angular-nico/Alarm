@@ -1,0 +1,91 @@
+.myAlarm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+
+  .table-alarm {
+    background-color: black;
+    color: white;
+    margin: 3rem 0 2rem;
+    height: 30rem;
+    scrollbar-width: none;
+    overflow-x: hidden; /* Activa el scroll vertical */
+    overflow-y: auto; /* Activa el scroll vertical */
+
+    .returnButton {
+      border: 0;
+      background-color: black;
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+      width: fit-content;
+
+      .Icon-footer {
+        color: white;
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 4rem;
+
+        &:hover {
+          color: #7B7878;
+        }
+      }
+    }
+
+    table {
+      width: 90%;
+      margin: 1rem auto;
+      background-color: black;
+    }
+
+    th, td {
+      /*padding: .5rem;*/
+      color: white;
+      border-bottom: 1px solid white;
+    }
+
+    th {
+      font-family: 'Chandas', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    td {
+      font-family: 'Dialog', sans-serif;
+      font-size: 1.2rem;
+
+      .action-letter {
+        margin: 0;
+        background-color: white;
+        width: 2rem;
+        padding: .8rem .5rem;
+        text-align: center;
+        color: black;
+        font-size: 1.4rem;
+        border-radius: 2rem;
+      }
+    }
+
+    .alarm-column {
+      width: auto;
+      /*font-size: 2rem;*/
+    }
+
+    .select-column {
+      width: 4rem;
+    }
+  }
+}
+
+.mat-mdc-checkbox.mat-warn {
+  --mdc-checkbox-unselected-icon-color: #fff;
+}
+
+.table-alarm td:first-child {
+  text-align: left;
+}
+
+.table-alarm td:last-child {
+  text-align: left;
+}

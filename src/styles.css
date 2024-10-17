@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+body {
+  background: rgba(0, 0, 0, 0.84);
+}
+
+@font-face {
+  font-family: 'Audiowide';
+  src: url('app/assets/fonts/Audiowide-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Afacad-Flux';
+  src: url("app/assets/fonts/AfacadFlux-VariableFont_slnt,wght.ttf");
+}

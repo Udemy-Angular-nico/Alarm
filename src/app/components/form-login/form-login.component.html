@@ -1,0 +1,33 @@
+<form class="form-register" action="">
+  <h3 style="color: white;">{{ login }}</h3>
+  <div class="inputs">
+    <label for="email">{{ name }}</label>
+    <input
+      type="email"
+      id="email"
+      [(ngModel)]="user.email"
+      name="email"
+      #email
+      placeholder="email"
+      required>
+  </div>
+
+  <div class="inputs">
+    <label for="password">{{ Pass }}</label>
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="user.password"
+      name="password"
+      #password
+      [placeholder]="Pass"
+      required>
+  </div>
+
+  <div class="buttons">
+    <!-- Botón para ingresar -->
+    <button type="submit" (click)="select()">{{ register }}</button>
+    <!-- Botón para alternar entre el formulario y el otro contenido -->
+    <button type="button" (click)="alternate()">{{ cancel }}</button>
+  </div>
+</form>

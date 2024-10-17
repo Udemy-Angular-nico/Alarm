@@ -1,0 +1,76 @@
+.Delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+
+  .Icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .text-info {
+      color: white;
+      margin: auto;
+      text-align: center;
+      font-family: 'Afacad-Flux', sans-serif;
+      font-size: 2.5rem;
+    }
+
+    .textPunter {
+      font-size: 7rem;
+      transform: rotate(180deg);
+    }
+
+    .iconMic {
+      border: 10px white solid;
+      cursor: pointer;
+      border-radius: 10rem;
+      &:hover {
+        color: gray;
+        border-color: gray;
+      }
+    }
+
+    .iconCircle {
+      cursor: pointer;
+      border-radius: 10rem;
+      &:hover {
+        color: gray;
+        border-color: gray;
+      }
+    }
+  }
+
+  .Icon-footer {
+    color: white;
+    font-size: 15rem;
+    width: auto;
+    height: auto;
+  }
+
+  .DeleteButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 3rem;
+
+    .options {
+      background-color: black;
+      color: white;
+      border: 2px white solid;
+      border-radius: 1.8rem;
+      font-family: 'Afacad-Flux', sans-serif;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: .8rem 2.5rem;
+      &:hover {
+        background-color: #292929;
+      }
+    }
+  }
+}

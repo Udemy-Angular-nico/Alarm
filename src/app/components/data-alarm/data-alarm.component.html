@@ -1,0 +1,122 @@
+<form *ngIf="timeUser === 0; else timeClock" action="" class="DataAlarm">
+  <mat-form-field class="mat-form-field mat-focused" appearance="fill">
+    <mat-label>{{ nameUser }}</mat-label>
+    <input
+      matInput
+      type="text"
+      id="Name"
+      name="Name"
+      maxlength="30"
+      required
+      [(ngModel)]="user.alarm"
+      #name>
+  </mat-form-field>
+
+  <!-- Campo para 'Description' -->
+  <mat-form-field class="mat-form-field mat-focused" appearance="fill">
+    <mat-label>{{ descriptionUser }}</mat-label>
+    <input
+      matInput
+      type="text"
+      id="description"
+      name="description"
+      maxlength="100"
+      [(ngModel)]="user.Description"
+      #description>
+  </mat-form-field>
+
+  <!-- Campo para 'Date' -->
+  <mat-form-field class="mat-form-field mat-focused" appearance="fill">
+    <mat-label>{{ DateUser }}</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      placeholder="Choose a date"
+      id="date"
+      name="date"
+      required
+      [(ngModel)]="user.Date"
+      #date>
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon style="color: white;">keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button type="button" class="Button-Data" (click)="TimeClock(1)">
+    <label class="buttonText">{{ hourUser }}</label>
+    <span class="buttonTime">{{ user.Time.Hour }} : {{ user.Time.Minute }}</span>
+  </button>
+
+  <div class="Icon-associate">
+    <label>{{ addTo}}</label>
+    <div class="ButtonImage">
+      <button><img ngSrc="Image/github.png" alt="" height="51" width="51"/></button>
+      <button><img ngSrc="Image/jira.png" alt="" height="51" width="51"/></button>
+      <button><img ngSrc="Image/Meet.png" alt="" height="51" width="51"/></button>
+    </div>
+  </div>
+
+  <mat-form-field class="mat-form-field">
+    <mat-label>{{ priorityUser }}</mat-label>
+    <mat-select [(ngModel)]="user.Priority" name="Priority">
+      <mat-option *ngFor="let option of priority" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="mat-form-field">
+    <mat-label>{{ voiceUser }}</mat-label>
+    <mat-select [(ngModel)]="user.Voice" name="Voice">
+      <mat-option *ngFor="let option of voice" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="mat-form-field">
+    <mat-label>{{ toneUser }}</mat-label>
+    <mat-select [(ngModel)]="user.Tone" name="Tone">
+      <mat-option *ngFor="let option of tone" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="button-apps">
+    <button [ngClass]="[!editUser ? 'dual' : 'trio']" class="options" (click)="returnCancel()">
+      {{ cancel }}
+    </button>
+    <button *ngIf="editUser" class="options trio" (click)="TimeClock(2); infoUser = 0">
+      {{ delete }}
+    </button>
+    <button [ngClass]="[!editUser ? 'dual' : 'trio']" class="options" (click)="returnSave()">
+      {{ save }}
+    </button>
+  </div>
+</form>
+
+<ng-template #timeClock>
+  <div style="height: 100%" *ngIf="timeUser === 1; else timeInformation">
+   <app-time-clock
+     (returnSelected)="TimeClock(0)"
+     (timeSelected)="onTimeSelected($event)"
+     [timeData]="{ time: user.Time, edit: true }"/>
+  </div>
+</ng-template>
+
+<ng-template #timeInformation>
+  <div style="height: 100%" *ngIf="timeUser === 2; else checkout">
+    <app-information
+      (returnCancel)="TimeClock(0)"
+      (returnAccept)="returnDelete()"
+     (saveSelected)="returnCancel()"
+      [typeUser]="{ use: infoUser }"/>
+  </div>
+</ng-template>
+
+<ng-template #checkout>
+
+</ng-template>

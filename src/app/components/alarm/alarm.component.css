@@ -1,0 +1,17 @@
+.screen-size {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 28rem;
+  margin: auto;
+  height: 45rem;
+  padding: 2rem;
+}
+
+.border {
+  background: black;
+  border: red 3px solid;
+  border-radius: 4rem;
+}

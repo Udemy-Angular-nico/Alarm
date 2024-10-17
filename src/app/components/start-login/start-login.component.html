@@ -1,0 +1,9 @@
+<div class="Form-login" action="">
+  <img ngSrc="Image/IMG.png" height="100" width="100" alt="" priority/>
+  <div *ngIf="loginComponent; else appComponent">
+    <app-form-login (cambiarVista)="alternateComponent()"/>
+  </div>
+  <ng-template #appComponent>
+    <app-form-apps (cambiarVista)="alternateComponent()"/>
+  </ng-template>
+</div>
