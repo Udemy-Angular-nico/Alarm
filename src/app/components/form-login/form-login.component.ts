@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule
 } from "@angular/forms";
 import { StorageService } from "../../services/storage.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatFormField} from "@angular/material/form-field";
 import {ErrorStateMatcher} from "@angular/material/core";
 import {MatInput} from "@angular/material/input";
@@ -37,7 +37,8 @@ export class FormLoginComponent {
 
   constructor(
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   alternate() {
@@ -47,7 +48,9 @@ export class FormLoginComponent {
   select(): void {
     if (this.user.email && this.user.password) {  // Verificar que user y sus propiedades existan
       this.storageService.setEncryptedItem('User', { 'email': this.user.email, 'password': this.user.password });
-      this.router.navigate(['/devp/alarm']);
+      this.user.email = '';
+      this.user.password = '';
+      this.router.navigate(['/devp/alarm'], {relativeTo: this.route});
     } else {
       console.error('El objeto user o alguna de sus propiedades no está definido');
     }

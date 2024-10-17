@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as CryptoJS from 'crypto-js';
+// import * as CryptoJS from 'crypto-js';
 import { BehaviorSubject } from "rxjs";
 
 // import {Alarma} from "../components/my-alarm/my-alarm.component";  // Importa CryptoJS
@@ -15,21 +15,21 @@ export class StorageService {
   constructor() { }
 
   // Cifrar dato
-  encrypt(value: string): string {
-    return CryptoJS.AES.encrypt(value, this.secretKey).toString();
-  }
-
-  // Descifrar dato
-  decrypt(value: string): string {
-    const bytes = CryptoJS.AES.decrypt(value, this.secretKey);
-    return bytes.toString(CryptoJS.enc.Utf8);
-  }
+  // encrypt(value: string): string {
+  //   return CryptoJS.AES.encrypt(value, this.secretKey).toString();
+  // }
+  //
+  // // Descifrar dato
+  // decrypt(value: string): string {
+  //   const bytes = CryptoJS.AES.decrypt(value, this.secretKey);
+  //   return bytes.toString(CryptoJS.enc.Utf8);
+  // }
 
   // Guardar dato en localStorage (cifrado)
   setEncryptedItem(key: string, value: { password: string; email: string }): void {
-    const encryptedEmail = this.encrypt(value.email)
-    const encryptedPass = this.encrypt(value.password);
-    const encryptedData = JSON.stringify({ 'email': encryptedEmail, 'pass': encryptedPass });
+    // const encryptedEmail = this.encrypt(value.email)
+    // const encryptedPass = this.encrypt(value.password);
+    const encryptedData = JSON.stringify({ 'email': value.email, 'pass': value.password });
     localStorage.setItem(key, encryptedData);
   }
 
@@ -40,10 +40,10 @@ export class StorageService {
   }
 
   // Obtener dato desde localStorage (descifrado)
-  getDecryptedItem(key: string): string | null {
-    const encryptedValue = localStorage.getItem(key);
-    return encryptedValue ? this.decrypt(encryptedValue) : null;
-  }
+  // getDecryptedItem(key: string): string | null {
+  //   const encryptedValue = localStorage.getItem(key);
+  //   return encryptedValue ? this.decrypt(encryptedValue) : null;
+  // }
 
   // Eliminar un item de localStorage
   removeItem(key: string): void {

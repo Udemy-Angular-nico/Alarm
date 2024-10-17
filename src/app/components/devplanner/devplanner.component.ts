@@ -22,12 +22,12 @@ export class DevplannerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // if (!this.storageService.hasLocalStorageItem('User')) {
-    //   this.router.navigate(['/'])
-    // }
-    // else {
-    this.dataAlarmService.saveDataToSession();
-    // }
+    if (!this.storageService.hasLocalStorageItem('User')) {
+      this.router.navigate(['/'])
+    }
+    else {
+      this.dataAlarmService.saveDataToSession();
+    }
     // console.log(this.storageService.hasLocalStorageItem('User'))
   }
 }
