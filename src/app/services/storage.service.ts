@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import * as CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
 import { BehaviorSubject } from "rxjs";
 
 // import {Alarma} from "../components/my-alarm/my-alarm.component";  // Importa CryptoJS
@@ -11,25 +11,38 @@ import { BehaviorSubject } from "rxjs";
 export class StorageService {
 
   secretKey = 'Principios solidos de seguridad';  // Clave secreta para cifrar y descifrar
+  encoder = new TextEncoder();
+  decoder = new TextDecoder();
 
   constructor() { }
 
+  // Generar una clave de cifrado a partir de la clave secreta
+  async generateKey(): Promise<CryptoKey> {
+    return crypto.subtle.importKey(
+      'raw',
+      this.encoder.encode(this.secretKey),
+      { name: 'AES-GCM' },
+      false,
+      ['encrypt', 'decrypt']
+    );
+  }
+
   // Cifrar dato
-  // encrypt(value: string): string {
-  //   return CryptoJS.AES.encrypt(value, this.secretKey).toString();
-  // }
-  //
-  // // Descifrar dato
-  // decrypt(value: string): string {
-  //   const bytes = CryptoJS.AES.decrypt(value, this.secretKey);
-  //   return bytes.toString(CryptoJS.enc.Utf8);
-  // }
+  encrypt(value: string): string {
+    return CryptoJS.AES.encrypt(value, this.secretKey).toString();
+  }
+
+  // Descifrar dato
+  decrypt(value: string): string {
+    const bytes = CryptoJS.AES.decrypt(value, this.secretKey);
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
 
   // Guardar dato en localStorage (cifrado)
-  setEncryptedItem(key: string, value: { password: string; email: string }): void {
-    // const encryptedEmail = this.encrypt(value.email)
-    // const encryptedPass = this.encrypt(value.password);
-    const encryptedData = JSON.stringify({ 'email': value.email, 'pass': value.password });
+  async setEncryptedItem(key: string, value: { password: string; email: string }): Promise<void> {
+    const encryptedEmail = this.encrypt(value.email);
+    const encryptedPass = this.encrypt(value.password);
+    const encryptedData = JSON.stringify({ 'email': encryptedEmail, 'pass': encryptedPass });
     localStorage.setItem(key, encryptedData);
   }
 
@@ -40,10 +53,16 @@ export class StorageService {
   }
 
   // Obtener dato desde localStorage (descifrado)
-  // getDecryptedItem(key: string): string | null {
-  //   const encryptedValue = localStorage.getItem(key);
-  //   return encryptedValue ? this.decrypt(encryptedValue) : null;
-  // }
+  async getDecryptedItem(key: string): Promise<{ email: string, password: string } | null> {
+    const encryptedData = localStorage.getItem(key);
+    if (!encryptedData) {
+      return null;
+    }
+    const { email, pass } = JSON.parse(encryptedData);
+    const decryptedEmail = this.decrypt(email);
+    const decryptedPass = this.decrypt(pass);
+    return { email: decryptedEmail, password: decryptedPass };
+  }
 
   // Eliminar un item de localStorage
   removeItem(key: string): void {
