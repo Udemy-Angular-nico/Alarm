@@ -16,17 +16,6 @@ export class StorageService {
 
   constructor() { }
 
-  // Generar una clave de cifrado a partir de la clave secreta
-  async generateKey(): Promise<CryptoKey> {
-    return crypto.subtle.importKey(
-      'raw',
-      this.encoder.encode(this.secretKey),
-      { name: 'AES-GCM' },
-      false,
-      ['encrypt', 'decrypt']
-    );
-  }
-
   // Cifrar dato
   encrypt(value: string): string {
     return CryptoJS.AES.encrypt(value, this.secretKey).toString();

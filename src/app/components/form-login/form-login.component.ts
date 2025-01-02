@@ -47,10 +47,11 @@ export class FormLoginComponent {
 
   select(): void {
     if (this.user.email && this.user.password) {  // Verificar que user y sus propiedades existan
-      this.storageService.setEncryptedItem('User', { 'email': this.user.email, 'password': this.user.password });
-      this.user.email = '';
-      this.user.password = '';
-      this.router.navigate(['/devp/alarm'], {relativeTo: this.route});
+      this.storageService.setEncryptedItem('User', {
+        'email': this.user.email,
+        'password': this.user.password
+      }).then();
+      this.router.navigate(['/devp/alarm'], {"relativeTo": this.route}).then();
     } else {
       console.error('El objeto user o alguna de sus propiedades no está definido');
     }
